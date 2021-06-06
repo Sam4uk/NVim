@@ -1,7 +1,8 @@
 
+"=====================
 filetype plugin indent on
 set encoding=utf-8
-set nocompatible
+"set nocompatible
 syntax enable
 
 if has('nvim')
@@ -34,16 +35,22 @@ let &t_SR.="\e[3 q"
 let &t_EI.="\e[2 q"
 
 "if empty(glob('~/.vim/autoload/plug.vim'))
-"call plug#begin
 
+
+" Plugins
 if has('nvim')
 	"NVim block
-    call plug#begin('./plugged')
+    call plug#begin()
 else
 	"Vim block
     call plug#begin('~/.vim/plugged')
 endif
+Plug 'vim-airline/vim-airline' 
 "Plug 'vim-airline/air-line'
-Plug 'airblade/vim-gitgutter'
+Plug 'airblade/vim-gitgutter' 
 Plug 'dracula/vim', {'name': 'dracula'}
+Plug 'plasticboy/vim-markdown', {'for': 'markdown'}
+Plug 'octol/vim-cpp-enhanced-highlight', {'for': ['c','cpp']}
+Plug 'rhysd/vim-clang-format'
+Plug 'vim-scripts/DoxyGen-Syntax'
 call plug#end()
