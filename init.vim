@@ -28,7 +28,7 @@ set showcmd wildmenu
 set hlsearch incsearch
 
 set wrap linebreak nolist textwidth=79
-"set curcor
+
 set ttimeoutlen=10
 let &t_SI.="\e[5 q" 
 let &t_SR.="\e[3 q"
@@ -45,12 +45,27 @@ else
 	"Vim block
     call plug#begin('~/.vim/plugged')
 endif
+"autocomplit
+Plug 'neoclide/coc.nvim', {'branch': 'release'}
+Plug 'jackguo380/vim-lsp-cxx-highlight'
+Plug 'scrooloose/nerdtree', {'on': 'NERDTreeTogle'}
 Plug 'vim-airline/vim-airline' 
-"Plug 'vim-airline/air-line'
-Plug 'airblade/vim-gitgutter' 
+Plug 'airblade/vim-gitgutter'
+Plug 'stephpy/vim-yaml', {'for': 'yaml'}
 Plug 'dracula/vim', {'name': 'dracula'}
 Plug 'plasticboy/vim-markdown', {'for': 'markdown'}
 Plug 'octol/vim-cpp-enhanced-highlight', {'for': ['c','cpp']}
 Plug 'rhysd/vim-clang-format'
 Plug 'vim-scripts/DoxyGen-Syntax'
+Plug 'vim-scripts/DoxygenToolkit.vim'
+Plug 'pboettch/vim-cmake-syntax'
+Plug 'rip-rip/clang_complete'
 call plug#end()
+
+let g:airline_powerline_fonts = 1 "Включить поддержку Powerline шрифтов
+let g:airline#extensions#keymap#enabled = 1 "Не показывать текущий маппинг
+let g:airline_section_z = "\ue0a1:%l/%L Col:%c" "Кастомная графа положения курсора
+let g:Powerline_symbols='unicode' "Поддержка unicode
+let g:airline#extensions#xkblayout#enabled = 0 "Про это позже расскажу
+
+map <C-n> :NERDTreeToggle
