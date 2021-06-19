@@ -54,6 +54,7 @@ else
     call plug#begin('~/.vim/plugged')
 endif
 "autocomplit
+Plug 'dracula/vim', {'name': 'dracula'}
 Plug 'neoclide/coc.nvim', {'branch': 'release'}
 Plug 'jackguo380/vim-lsp-cxx-highlight'
 Plug 'scrooloose/nerdtree', {'on': 'NERDTreeTogle'}
