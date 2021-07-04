@@ -1,9 +1,9 @@
 "╔═══════════════════════════════════════════════════════════════════════════╗
 "║ THE BEER-WARE LICENSE                                                     ║
-"║ Sam4uk wrote this file. As long as you retain this notice you can do      ║
+"║ Sam4uk  wrote  this  file.  As long as you retain this notice you  can do ║
 "║ whatever you want with this stuff. If we meet some day, and you think this║
 "║ stuff is worth it, you can buy me a beer in return                        ║
-"║                                                          03-07-21 16:13:17║
+"║                                                          04-07-21 17:09:12║
 "║                                                            Sam4uk         ║
 "╚═══════════════════════════════════════════════════════════════════════════╝
 "---------------------------------------------------------------------------
@@ -18,39 +18,18 @@ set scrolloff=4
 " (no)wrap динамічний (не)перенос довгих рядків
 set wrap
 " переносити цілі рядки
-set linebreak "dsf
-"set hidden " не выгружать буфер когда переключаешься на другой
-"set mouse=a " включает поддержку мыши при работе в терминале (без GUI)
-"set mousehide " скрывать мышь в режиме ввода текста
+set linebreak
+"set hidden "
+"set mouse=a "
+"set mousehide "
 " показувати не завершені команди в статус бар
 set showcmd wildmenu
-"set mps+=<:> " показывать совпадающие скобки для HTML-тегов
-"set showmatch " показывать первую парную скобку после ввода второй
-"set autoread " перечитывать изменённые файлы автоматически
-"set t_Co=256 " использовать больше цветов в терминале
-"set confirm " использовать диалоги вместо сообщений об ошибках
-""" Формат строки состояния
-" fileformat - формат файла (unix, dos); fileencoding - кодировка файла;
-" encoding - кодировка терминала; TYPE - тип файла, затем коды символа под курсором;
-" позиция курсора (строка, символ в строке); процент прочитанного в файле;
-" кол-во строк в файле;
-"set statusline=%F%m%r%h%w\ [FF,FE,TE=%{&fileformat},%{&fileencoding},%{&encoding}\]\ [TYPE=%Y]\ [ASCII=\%03.3b]\ [HEX=\%02.2B]\ [POS=%04l,%04v][%p%%]\ [LEN=%L]
-"Изменяет шрифт строки статуса (делает его не жирным)
-"hi StatusLine gui=reverse cterm=reverse
 " завжди відображати рядок стану
 set laststatus=2
 " Показуємо лінійку та номерацію рядків відносно поточного рядка 
 set ruler number relativenumber cursorline
 " Підсвітимо пробіли та табуляцію
 set list listchars=tab:>-,trail:-
-"Проблема красного на красном при spellchecking-е решается такой строкой в .vimrc
-"highlight SpellBad ctermfg=Black ctermbg=Red
-"au BufWinLeave *.* silent mkview " при закрытии файла сохранить 'вид'
-"au BufWinEnter *.* silent loadview " при открытии - восстановить сохранённый
-"set backspace=indent,eol,start " backspace обрабатывает отступы, концы строк
-"set sessionoptions=curdir,buffers,tabpages " опции сессий - перейти в текущую директорию, использовать буферы и табы
-"set noswapfile " не использовать своп-файл (в него скидываются открытые буферы)
-"set browsedir=current
 " мигнути екраном якщо помилка
 set visualbell
 " Показати ім`я файла в заголовку термінлу 
@@ -71,17 +50,27 @@ set fencs=utf-8,cp1251,koi8-r,cp866
 syntax enable
 
 filetype plugin indent on
-" autocmd FileType perl call SetPerlConf()
-"reload file if chenge outside
+" перечити файл якщо змінено ззовні
 set autoread
 set expandtab tabstop=4 autoindent softtabstop=4 shiftwidth=4 cindent smartindent
 au FileType make set tabstop=8 shiftwidth=8
+"au FileType markdown set nowrap
 set hlsearch incsearch
 "set wrap linebreak nolist textwidth=80
-set ttimeoutlen=10
-let &t_SI.="\e[5 q" 
-let &t_SR.="\e[3 q"
-let &t_EI.="\e[2 q"
+set ttimeoutlen=10 "знажуємо затримку виведення помлідовностей
+let &t_SI.="\e[5 q" " режим вставки
+let &t_SR.="\e[3 q" " режим заміни
+let &t_EI.="\e[2 q" " нормальний режим
+" де
+" 1 - моготливий прямокутник
+" 2 - звичайний прямокутник
+" 3 - миготливе підкреслення
+" 4 - звичайне підкреслення
+" 5 - миготлива риска
+" 6 - риска
+"
+
+set langmap=ФИСВУАПРШОЛДЬТЩЗЙКЫІЕГМЦЧНЯ;ABCDEFGHIJKLMNOPQRSSTUVWXYZ,фисвуапршолдьтщзйкыіегмцчня;abcdefghijklmnopqrsstuvwxyz
 
 "ds
 "НАСТРОЙКИ СВОРАЧИВАНИЯ БЛОКОВ ТЕКСТА (фолдинг)
@@ -92,8 +81,6 @@ set foldcolumn=3 " показать полосу для управления с�
 set foldlevel=1 " Первый уровень вложенности открыт, остальные закрыты
 set foldopen=all " автоматическое открытие сверток при заходе в них
 set tags=tags\ $VIMRUNTIME/systags " искать теги в текущй директории и в указанной (теги генерируются ctags)
-
-
 
 function! ConfInfoUpDate()
   call setline(1, '"╔═══════════════════════════════════════════════════════════════════════════╗')
@@ -127,7 +114,10 @@ endif
 "---------------------------------------------------------------------------
 "                 P L U G I N S  L I S T
 "---------------------------------------------------------------------------
-
+"
+"https://habr.com/ru/post/468265/
+" Іконки 
+Plug 'ryanoasis/vim-devicons'
 
 " Plug 'dracula/vim', {'name': 'dracula'} " Кольорова схема
 " "Plug 'neoclide/coc.nvim', {'branch': 'release'}
@@ -135,10 +125,13 @@ endif
 Plug 'scrooloose/nerdtree', {'on': 'NERDTreeTogle'}
 Plug 'vim-airline/vim-airline' " Можифікувати рядок статусу
 Plug 'airblade/vim-gitgutter' " підсвідка змін gidiff
-" Plug 'lervag/vimtex', {'for': 'tex'}
+Plug 'lervag/vimtex', {'for': 'tex'} " LaTeX
 Plug 'chrisbra/vim-zsh'
 Plug 'stephpy/vim-yaml', {'for': 'yaml'}
 Plug 'plasticboy/vim-markdown', {'for': 'markdown'}
+" Nodejs
+"npm install -g livedown
+Plug 'shime/vim-livedown', {'for': 'markdown'}
 Plug 'octol/vim-cpp-enhanced-highlight', {'for': ['c','cpp']}
 Plug 'rhysd/vim-clang-format'
 " Plug 'vim-scripts/DoxyGen-Syntax'
@@ -182,7 +175,12 @@ let g:airline#extensions#keymap#enabled = 1 "Не показывать теку�
 let g:airline_section_z = "\ue0a1:%l/%L Col:%c" "Кастомная графа положения курсора
 let g:Powerline_symbols='unicode' "Поддержка unicode
 let g:airline#extensions#xkblayout#enabled = 1 "Про это позже расскажу
+
+let g:tex_flavor = 'latex' " LaTeX
+let g:vimtex_quickfix_mode = 0 "Отключаем автоматическое открытие окна Quickfix
 map <C-n> :NERDTreeToggle
 map <C-f> :ClangFormat
+"Поменяйте сочетание клавиш на любое вам удобное
+nnoremap <leader>ld :LivedownToggle<CR>
 "^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
 "                         E O F
