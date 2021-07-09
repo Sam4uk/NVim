@@ -3,7 +3,7 @@
 "║ Sam4uk  wrote  this  file.  As long as you retain this notice you  can do ║
 "║ whatever you want with this stuff. If we meet some day, and you think this║
 "║ stuff is worth it, you can buy me a beer in return                        ║
-"║                                                          04-07-21 17:09:12║
+"║                                                          10-07-21 00:16:55║
 "║                                                            Sam4uk         ║
 "╚═══════════════════════════════════════════════════════════════════════════╝
 "---------------------------------------------------------------------------
@@ -29,7 +29,7 @@ set laststatus=2
 " Показуємо лінійку та номерацію рядків відносно поточного рядка 
 set ruler number relativenumber cursorline
 " Підсвітимо пробіли та табуляцію
-set list listchars=tab:>-,trail:-
+set list listchars=tab:╺╴,eol:¬,trail:·,extends:→,precedes:←
 " мигнути екраном якщо помилка
 set visualbell
 " Показати ім`я файла в заголовку термінлу 
