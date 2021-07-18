@@ -20,8 +20,11 @@
 "║DEALINGS IN THE SOFTWARE.                                                  ║
 "║                                                                           ║
 "║                                                                           ║
-"║                                              Last update:14-07-21 23:17:39║
+"║                                              Last update:18-07-21 22:53:04║
 "╚═══════════════════════════════════════════════════════════════════════════╝
+
+
+" AUTO LOAD PLAGIN MANAGER {{{
 let it_NVim = has('nvim')
 let it_Win32 = has('win32')
 let it_gVim = has('gvim')
@@ -43,21 +46,32 @@ if it_Vim
   endif
   call plug#begin('~/.vim/plugged')
 endif
-"""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
-" ПЛАГІНИ
-" ДЛЯ Vim
+" }}}
+
+" ПЛАГІНИ {{{
+
+" ДЛЯ Vim {{{
 if it_Vim
 Plug 'dracula/vim', {'name': 'dracula'} " Кольорова схема
  " Plug 'NLKNguyen/papercolor-theme'
 endif
-" Для NVIM
+" }}}
+" ДЛЯ NVim{{{
 if it_NVim
-Plug 'ayu-theme/ayu-vim' " Кольорова схема
+    Plug 'ayu-theme/ayu-vim' " Кольорова схема
+    Plug 'iamcco/markdown-preview.nvim', { 'do': { -> mkdp#util#install() }, 'for': ['markdown', 'vim-plug']}
+else
+    " Налаштування для Vim щоб був схожий на NVim
+    Plug 'noahfrederick/vim-neovim-defaults'
 endif
-
+" }}}
+" ЗАГАЛЬНІ{{{
+Plug 'tpope/vim-surround'
 """"https://habr.com/ru/post/468265/
 " Іконки 
+
 "Plug 'ryanoasis/vim-devicons'
+"
 "
 "" "Plug 'neoclide/coc.nvim', {'branch': 'release'}
 "" Plug 'jackguo380/vim-lsp-cxx-highlight'
@@ -121,7 +135,6 @@ Plug 'Shougo/context_filetype.vim'
 "" Automatically close parenthesis, etc
 "Plug 'Townk/vim-autoclose'
 " Surround
-Plug 'tpope/vim-surround'
 "" Indent text object
 "Plug 'michaeljsmith/vim-indent-object'
 "" Indentation based movements
@@ -170,20 +183,15 @@ Plug 'ryanoasis/vim-devicons'
 " Plug 'jfo/hound.vim'
 
 " Tell vim-plug we finished declaring plugins, so it can load them
+" }}}
+" }}}
 
-
-"@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@
-"""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
-" СПИСОК ПЛАГІНІВ
-""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
-
-
-"@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@
+" ІНІЦІАЦІЯ МЕНЕДЖЕРА ПЛАГІНІВ {{{
 call plug#end()
+" }}}
 
-" Налаштовуємо редактор та плагіни
+" НАЛАШТУВАННЯ ДЛЯ Vim {{{
 
-" Застосовуємо налаштування для VIM
 if it_Vim
     " вимкнути режим сумісності з класичним редактором Vi
     set nocompatible
@@ -217,7 +225,9 @@ if it_Vim
   endif
   colorscheme dracula
 endif
+" }}}
 
+" НАЛАШТУВАННЯ NVim {{{
 if it_NVim
     if empty(glob("~/.config/nvim/plugged/vim-airline/autoload/airline.vim"))   
     :PlugInstall
@@ -226,7 +236,9 @@ if it_NVim
   colorscheme ayu
   let ayucolor="dark" 
 endif
+" }}}
 
+" НАЛАШТУВАННЯ ДЛЯ Win32 {{{
 if it_Win32
 "  if empty(glob("~/.vim/plugged/vim-airline/autoload/airline.vim"))   
 "      :PlugInstall
@@ -239,7 +251,9 @@ else
   set encoding=utf-8
   set  termencoding=utf-8
 endif
+" }}}
 
+" EMPTY {{{
 if has('gui_running') || it_NVim || (&term =~? 'mlterm\|xterm\|xterm-256\|screen-256')
     if !has('gui_running')
         let &t_Co = 256
@@ -248,6 +262,11 @@ if has('gui_running') || it_NVim || (&term =~? 'mlterm\|xterm\|xterm-256\|screen
 else
 "    colorscheme delek
 endif
+" }}}
+
+" EMPTY {{{
+highlight ColorColumn ctermbg=black
+call matchadd('ColorColumn','\%81v',100)
 
 " задаємо кількість рядків при скролінгу
 set scrolloff=4
@@ -316,3 +335,23 @@ map <C-n> :NERDTreeToggle
 map <C-f> :ClangFormat
 
 nnoremap <leader>ld :LivedownToggle<CR>
+
+augroup config_settings
+    autocmd!
+    autocmd FileType vim setlocal foldlevel=0 foldmethod=marker
+augroup END
+
+map <Down> <NOP>
+map <Up> <NOP>
+map <Left> <NOP>
+map <Right> <NOP>
+" }}}
+
+" EMPTY {{{
+" }}}
+
+" EMPTY {{{
+" }}}
+
+" EMPTY {{{
+" }}}
