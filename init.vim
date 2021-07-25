@@ -20,9 +20,8 @@
 "║DEALINGS IN THE SOFTWARE.                                                  ║
 "║                                                                           ║
 "║                                                                           ║
-"║                                              Last update:18-07-21 22:53:04║
+"║                                              Last update:25-07-21 14:59:24║
 "╚═══════════════════════════════════════════════════════════════════════════╝
-
 
 " AUTO LOAD PLAGIN MANAGER {{{
 let it_NVim = has('nvim')
@@ -52,142 +51,50 @@ endif
 
 " ДЛЯ Vim {{{
 if it_Vim
-Plug 'dracula/vim', {'name': 'dracula'} " Кольорова схема
- " Plug 'NLKNguyen/papercolor-theme'
+    Plug 'dracula/vim', {'name': 'dracula'} " Кольорова схема
+    Plug 'NLKNguyen/papercolor-theme'
 endif
 " }}}
+
 " ДЛЯ NVim{{{
 if it_NVim
     Plug 'ayu-theme/ayu-vim' " Кольорова схема
-    Plug 'iamcco/markdown-preview.nvim', { 'do': { -> mkdp#util#install() }, 'for': ['markdown', 'vim-plug']}
+    "Plug 'iamcco/markdown-preview.nvim', { 'do': { -> mkdp#util#install() }, 'for': ['markdown', 'vim-plug']}
 else
     " Налаштування для Vim щоб був схожий на NVim
     Plug 'noahfrederick/vim-neovim-defaults'
 endif
 " }}}
+
 " ЗАГАЛЬНІ{{{
-Plug 'tpope/vim-surround'
-""""https://habr.com/ru/post/468265/
-" Іконки 
-
-"Plug 'ryanoasis/vim-devicons'
-"
-"
-"" "Plug 'neoclide/coc.nvim', {'branch': 'release'}
-"" Plug 'jackguo380/vim-lsp-cxx-highlight'
-""Plug 'scrooloose/nerdtree', {'on': 'NERDTreeTogle'}
-"Plug 'airblade/vim-gitgutter' " підсвідка змін gidiff
-Plug 'lervag/vimtex', {'for': 'tex'} " LaTeX
-"Plug 'chrisbra/vim-zsh'
-Plug 'stephpy/vim-yaml', {'for': 'yaml'}
-Plug 'plasticboy/vim-markdown', {'for': 'markdown'}
-"" Nodejs
-""npm install -g livedown
-Plug 'shime/vim-livedown', {'for': 'markdown'}
-Plug 'octol/vim-cpp-enhanced-highlight', {'for': ['c','cpp']}
-Plug 'rhysd/vim-clang-format'
-"" Plug 'vim-scripts/DoxyGen-Syntax'
-"" Plug 'vim-scripts/DoxygenToolkit.vim'
-"Plug 'pboettch/vim-cmake-syntax'
-"Plug 'rip-rip/clang_complete'
-
-
-"" Airline
-Plug 'vim-airline/vim-airline' " Можифікувати рядок статусу
-Plug 'vim-airline/vim-airline-themes'
-
-" Now the actual plugins:
-"
-"" Override configs by directory
-"Plug 'arielrossanigo/dir-configs-override.vim'
-" Code commenter
-Plug 'scrooloose/nerdcommenter'
-"" Better file browser
-"Plug 'scrooloose/nerdtree'
-"" Class/module browser
-"Plug 'majutsushi/tagbar'
-"" Search results counter
-"Plug 'vim-scripts/IndexedSearch'
-"" A couple of nice colorschemes
-"" Plug 'fisadev/fisa-vim-colorscheme'
-"Plug 'patstockwell/vim-monokai-tasty'
-
-"" Code and files fuzzy finder
-"Plug 'junegunn/fzf', { 'dir': '~/.fzf', 'do': './install --all' }
-"Plug 'junegunn/fzf.vim'
-"" Pending tasks list
-"Plug 'fisadev/FixedTaskList.vim'
-" Async autocompletion
-"if using_neovim && vim_plug_just_installed
-"    Plug 'Shougo/deoplete.nvim', {'do': ':autocmd VimEnter * UpdateRemotePlugins'}
-"else
-"    Plug 'Shougo/deoplete.nvim'
-"endif
-"Plug 'roxma/nvim-yarp'
-"Plug 'roxma/vim-hug-neovim-rpc'
-"" Python autocompletion
-"Plug 'deoplete-plugins/deoplete-jedi'
-" Completion from other opened files
-Plug 'Shougo/context_filetype.vim'
-"" Just to add the python go-to-definition and similar features, autocompletion
-"" from this plugin is disabled
-"Plug 'davidhalter/jedi-vim'
-"" Automatically close parenthesis, etc
-"Plug 'Townk/vim-autoclose'
-" Surround
-"" Indent text object
-"Plug 'michaeljsmith/vim-indent-object'
-"" Indentation based movements
-"Plug 'jeetsukumaran/vim-indentwise'
-"" Better language packs
-"Plug 'sheerun/vim-polyglot'
-"" Ack code search (requires ack installed in the system)
-"Plug 'mileszs/ack.vim'
-" Paint css colors with the real color
-Plug 'lilydjwg/colorizer', {'for': ['css','htm','html']}
-"" Window chooser
-"Plug 't9md/vim-choosewin'
-"" Automatically sort python imports
-"Plug 'fisadev/vim-isort'
-"" Highlight matching html tags
-"Plug 'valloric/MatchTagAlways'
-"" Generate html in a simple way
-"Plug 'mattn/emmet-vim'
-"" Git integration
-"Plug 'tpope/vim-fugitive'
-"" Git/mercurial/others diff icons on the side of the file lines
-"Plug 'mhinz/vim-signify'
-"" Yank history navigation
-"Plug 'vim-scripts/YankRing.vim'
-"" Linters
-"Plug 'neomake/neomake'
-"" Relative numbering of lines (0 is the current line)
-"" (disabled by default because is very intrusive and can't be easily toggled
-"" on/off. When the plugin is present, will always activate the relative
-"" numbering every time you go to normal mode. Author refuses to add a setting
-"" to avoid that)
-"Plug 'myusuf3/numbers.vim'
-" Nice icons in the file explorer and file type status line.
-Plug 'ryanoasis/vim-devicons'
-"
-"if using_vim
-"    " Consoles as buffers (neovim has its own consoles as buffers)
-"    Plug 'rosenfeld/conque-term'
-"    " XML/HTML tags navigation (neovim has its own)
-"    Plug 'vim-scripts/matchit.zip'
-"endif
-"
-"" Code searcher. If you enable it, you should also configure g:hound_base_url 
-" and g:hound_port, pointing to your hound instance
-" Plug 'mattn/webapi-vim'
-" Plug 'jfo/hound.vim'
-
-" Tell vim-plug we finished declaring plugins, so it can load them
-" }}}
+    
+    Plug 'tpope/vim-surround'
+    Plug 'vim-airline/vim-airline' " Можифікувати рядок статусу
+    Plug 'vim-airline/vim-airline-themes'
+    Plug 'rhysd/vim-clang-format', {'for': ['c','cxx']}
+    " FuzzyFinder (для шуидкого пошуку)
+    Plug 'junegunn/fzf', { 'dir': '~/.fzf', 'do': './install --all' }
+    Plug 'junegunn/fzf.vim'
+    " NERDTree - Швидкий перегляд файлів
+    Plug 'preservim/nerdtree'
+    " Сoc - автодоповнення 
+    Plug 'neoclide/coc.nvim', {'branch': 'release'}
+    " Доповнення для NERDTree
+    Plug 'tiagofumo/vim-nerdtree-syntax-highlight'
+    Plug 'scrooloose/nerdcommenter'
+    " Доповнення для Git, а такод іконки для NERDTree
+    Plug 'airblade/vim-gitgutter'
+    Plug 'ryanoasis/vim-devicons'
+    " Перевірка синтаксисуа
+    Plug 'scrooloose/syntastic' 
+    " Плагин автозавершення
+    Plug 'Valloric/YouCompleteMe'
 " }}}
 
-" ІНІЦІАЦІЯ МЕНЕДЖЕРА ПЛАГІНІВ {{{
-call plug#end()
+" }}}
+
+" {{{
+  call plug#end()
 " }}}
 
 " НАЛАШТУВАННЯ ДЛЯ Vim {{{
@@ -201,8 +108,8 @@ if it_Vim
     set hlsearch incsearch
     syntax enable
 
-    " better backup, swap and undos storage for vim (nvim has nice ones by
-    " default)
+    " кращий бекап, свап та інші збереження для Vim (NVim має прекрасні за
+    " замовчуванням
     set directory=~/.vim/dirs/tmp     " directory to place swap files in
     set backup                        " make backup files
     set backupdir=~/.vim/dirs/backups " where to put backup files
@@ -253,7 +160,7 @@ else
 endif
 " }}}
 
-" EMPTY {{{
+" GUI {{{
 if has('gui_running') || it_NVim || (&term =~? 'mlterm\|xterm\|xterm-256\|screen-256')
     if !has('gui_running')
         let &t_Co = 256
@@ -264,7 +171,7 @@ else
 endif
 " }}}
 
-" EMPTY {{{
+" КОНФІГУРАЦІЯ {{{
 highlight ColorColumn ctermbg=black
 call matchadd('ColorColumn','\%81v',100)
 
@@ -295,9 +202,9 @@ set fencs=utf-8,cp1251,koi8-r,cp866
 " перечити файл якщо змінено ззовні
 set autoread
 set expandtab tabstop=4 autoindent softtabstop=4 shiftwidth=4 cindent smartindent
-au FileType make set tabstop=8 shiftwidth=8
-"au FileType markdown set nowrap
 "set wrap linebreak nolist textwidth=80
+
+" НАЛАШТУВАННЯ ВИГЯЛДУ КУРСОРУ {{{
 set ttimeoutlen=10 "знажуємо затримку виведення помлідовностей
 let &t_SI.="\e[5 q" " режим вставки
 let &t_SR.="\e[3 q" " режим заміни
@@ -309,37 +216,49 @@ let &t_EI.="\e[2 q" " нормальний режим
 " 4 - звичайне підкреслення
 " 5 - миготлива риска
 " 6 - риска
-"
-" Примушуэмо Vi розуміти укарїінську мову і москальску підключимо
-set langmap=ФИСВУАПРШОЛДЬТЩЗЙКЫІЕГМЦЧНЯ;ABCDEFGHIJKLMNOPQRSSTUVWXYZ,фисвуапршолдьтщзйкыіегмцчня;abcdefghijklmnopqrsstuvwxyz
+" }}}
 
-"Налаштування фолдингу
-set foldenable
-set foldmethod=syntax " визначати блоки тексту по синтаксису
-set foldmethod=indent " визначати блоки зп відступом
-set foldcolumn=3 " Показати полосу для керування згоротанням
-set foldlevel=1 " Перший рівень вкладеності відкритий, решта закриті
-set foldopen=all " автоматическое открытие сверток при заходе в них
-set tags=tags\ $VIMRUNTIME/systags " Шукати теги в поточному каталозі (теги генерируются ctags)
+" РОЗУМІЄ УКРАЇНСЬКУ {{{
+    set langmap=ФИСВУАПРШОЛДЬТЩЗЙКЫІЕГМЦЧНЯ;ABCDEFGHIJKLMNOPQRSSTUVWXYZ,фисвуапршолдьтщзйкыіегмцчня;abcdefghijklmnopqrsstuvwxyz
+" }}} 
 
-let g:airline#extensions#tabline#enabled = 1
-let g:airline_powerline_fonts = 1 " Увімкнути підтримку Powerline шрифтів
-let g:airline#extensions#keymap#enabled = 1 "Не показывать текущий маппинг
-let g:airline_section_z = "\ue0a1:%l/%L Col:%c" " Кастомна графа положення курсору
-let g:Powerline_symbols='unicode' " Підтримка unicode
-let g:airline#extensions#xkblayout#enabled = 1 "
+" ФОЛДИНГ {{{
+    set foldenable
+    set foldmethod=syntax " визначати блоки тексту по синтаксису
+    set foldmethod=indent " визначати блоки зп відступом
+    set foldcolumn=3 " Показати полосу для керування згоротанням
+    set foldlevel=1 " Перший рівень вкладеності відкритий, решта закриті
+    set foldopen=all " автоматическое открытие сверток при заходе в них
+    set tags=tags\ $VIMRUNTIME/systags " Шукати теги в поточному каталозі (теги генерируются ctags)
+" }}}
 
-let g:tex_flavor = 'latex' " LaTeX
-let g:vimtex_quickfix_mode = 0 "Отключаем автоматическое открытие окна Quickfix
-map <C-n> :NERDTreeToggle
-map <C-f> :ClangFormat
+" AIRLINE {{{
+    let g:airline#extensions#tabline#enabled = 1
+    let g:airline_powerline_fonts = 1 " Увімкнути підтримку Powerline шрифтів
+    let g:airline#extensions#keymap#enabled = 1 "Не показывать текущий маппинг
+    let g:airline_section_z = "\ue0a1:%l/%L Col:%c" " Кастомна графа положення курсору
+    let g:Powerline_symbols='unicode' " Підтримка unicode
+    let g:airline#extensions#xkblayout#enabled = 1 "
+" }}}
 
-nnoremap <leader>ld :LivedownToggle<CR>
-
+" NONAME {{{
 augroup config_settings
     autocmd!
+    autocmd FileType make set tabstop=8 shiftwidth=8
+    autocmd FileType markdown set nowrap
     autocmd FileType vim setlocal foldlevel=0 foldmethod=marker
+    autocmd FileType python set omnifunc=pythoncomplete#Complete
+    autocmd FileType tt2html set omnifunc=htmlcomplete#CompleteTags
+    autocmd FileType javascript set omnifunc=javascriptcomplete#CompleteJS
+    autocmd FileType html set omnifunc=htmlcomplete#CompleteTags
+    autocmd FileType css set omnifunc=csscomplete#CompleteCSS
+    autocmd FileType xml set omnifunc=xmlcomplete#CompleteTags
+    autocmd FileType php set omnifunc=phpcomplete#CompletePHP
+    autocmd FileType c set omnifunc=ccomplete#Complete
 augroup END
+" }}}
+
+" КЛАВІШІ {{{
 
 map <Down> <NOP>
 map <Up> <NOP>
@@ -352,6 +271,5 @@ map <Right> <NOP>
 
 " EMPTY {{{
 " }}}
-
 " EMPTY {{{
 " }}}
