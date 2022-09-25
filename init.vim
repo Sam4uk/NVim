@@ -78,7 +78,7 @@ endif
     " NERDTree - Швидкий перегляд файлів
     Plug 'preservim/nerdtree'
     " Сoc - автодоповнення 
-    Plug 'neoclide/coc.nvim', {'branch': 'release'}
+    "  Plug 'neoclide/coc.nvim', {'branch': 'release'}
     " Доповнення для NERDTree
     Plug 'tiagofumo/vim-nerdtree-syntax-highlight'
     Plug 'scrooloose/nerdcommenter'
@@ -86,9 +86,9 @@ endif
     Plug 'airblade/vim-gitgutter'
     Plug 'ryanoasis/vim-devicons'
     " Перевірка синтаксисуа
-    Plug 'scrooloose/syntastic' 
+    "  Plug 'scrooloose/syntastic' 
     " Плагин автозавершення
-    Plug 'Valloric/YouCompleteMe'
+    "  Plug 'Valloric/YouCompleteMe'
 " }}}
 
 " }}}
