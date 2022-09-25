@@ -20,8 +20,10 @@
 "║DEALINGS IN THE SOFTWARE.                                                  ║
 "║                                                                           ║
 "║                                                                           ║
-"║                                              Last update:14-07-21 23:02:37║
+"║                                              Last update:25-07-21 14:59:24║
 "╚═══════════════════════════════════════════════════════════════════════════╝
+
+" AUTO LOAD PLAGIN MANAGER {{{
 let it_NVim = has('nvim')
 let it_Win32 = has('win32')
 let it_gVim = has('gvim')
@@ -43,39 +45,71 @@ if it_Vim
   endif
   call plug#begin('~/.vim/plugged')
 endif
-"""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
-if it_Vim
-	" Plug for Vim
-endif
+" }}}
 
+" ПЛАГІНИ {{{
+
+" ДЛЯ Vim {{{
+if it_Vim
+    Plug 'dracula/vim', {'name': 'dracula'} " Кольорова схема
+    Plug 'NLKNguyen/papercolor-theme'
+endif
+" }}}
+
+" ДЛЯ NVim{{{
 if it_NVim
-	" Plug for NVim
+    Plug 'ayu-theme/ayu-vim' " Кольорова схема
+    "Plug 'iamcco/markdown-preview.nvim', { 'do': { -> mkdp#util#install() }, 'for': ['markdown', 'vim-plug']}
+else
+    " Налаштування для Vim щоб був схожий на NVim
+    Plug 'noahfrederick/vim-neovim-defaults'
 endif
+" }}}
 
-if it_gVim
-	" Plug for gVim
-endif
+" ЗАГАЛЬНІ{{{
+    
+    Plug 'tpope/vim-surround'
+    Plug 'vim-airline/vim-airline' " Можифікувати рядок статусу
+    Plug 'vim-airline/vim-airline-themes'
+    Plug 'rhysd/vim-clang-format', {'for': ['c','cxx']}
+    " FuzzyFinder (для шуидкого пошуку)
+    Plug 'junegunn/fzf', { 'dir': '~/.fzf', 'do': './install --all' }
+    Plug 'junegunn/fzf.vim'
+    " NERDTree - Швидкий перегляд файлів
+    Plug 'preservim/nerdtree'
+    " Сoc - автодоповнення 
+    Plug 'neoclide/coc.nvim', {'branch': 'release'}
+    " Доповнення для NERDTree
+    Plug 'tiagofumo/vim-nerdtree-syntax-highlight'
+    Plug 'scrooloose/nerdcommenter'
+    " Доповнення для Git, а такод іконки для NERDTree
+    Plug 'airblade/vim-gitgutter'
+    Plug 'ryanoasis/vim-devicons'
+    " Перевірка синтаксисуа
+    Plug 'scrooloose/syntastic' 
+    " Плагин автозавершення
+    Plug 'Valloric/YouCompleteMe'
+" }}}
 
-if it_Win32
-	" Plug for Windows
-endif
+" }}}
 
-" Common Plug
-Plug 'vim-airline/vim-airline'
-"""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
-call plug#end()
+" {{{
+  call plug#end()
+" }}}
 
-" Config editor & Plug`s
+" НАЛАШТУВАННЯ ДЛЯ Vim {{{
 
-" Settings for Vim
 if it_Vim
+    " вимкнути режим сумісності з класичним редактором Vi
     set nocompatible
     filetype plugin indent on
+    " завжди відображати рядок стану
     set laststatus=2
     set hlsearch incsearch
     syntax enable
-    " better backup, swap and undos storage for vim (nvim has nice ones by
-    " default)
+
+    " кращий бекап, свап та інші збереження для Vim (NVim має прекрасні за
+    " замовчуванням
     set directory=~/.vim/dirs/tmp     " directory to place swap files in
     set backup                        " make backup files
     set backupdir=~/.vim/dirs/backups " where to put backup files
@@ -96,75 +130,146 @@ if it_Vim
     if empty(glob("~/.vim/plugged/vim-airline/autoload/airline.vim"))   
       :PlugInstall
   endif
+  colorscheme dracula
 endif
+" }}}
 
-" Settings for Nvim
+" НАЛАШТУВАННЯ NVim {{{
 if it_NVim
     if empty(glob("~/.config/nvim/plugged/vim-airline/autoload/airline.vim"))   
     :PlugInstall
   endif
   set termguicolors
+  colorscheme ayu
+  let ayucolor="dark" 
 endif
+" }}}
 
-" Settings for Win
+" НАЛАШТУВАННЯ ДЛЯ Win32 {{{
 if it_Win32
-    " TODO path in win
 "  if empty(glob("~/.vim/plugged/vim-airline/autoload/airline.vim"))   
 "      :PlugInstall
 "  endif
+  " якщо раптом доведеться запустити вім у вінді
+  " НЕ ДАЙ БОГ
+  " кодування
   set encoding=cp2151
 else
   set encoding=utf-8
   set  termencoding=utf-8
 endif
+" }}}
 
+" GUI {{{
 if has('gui_running') || it_NVim || (&term =~? 'mlterm\|xterm\|xterm-256\|screen-256')
     if !has('gui_running')
         let &t_Co = 256
     endif
+"    colorscheme vim-monokai-tasty
 else
+"    colorscheme delek
 endif
+" }}}
 
-" Common setings
+" КОНФІГУРАЦІЯ {{{
+highlight ColorColumn ctermbg=black
+call matchadd('ColorColumn','\%81v',100)
 
+" задаємо кількість рядків при скролінгу
 set scrolloff=4
+" (no)wrap динамічний (не)перенос довгих рядків
 set wrap
+" переносити цілі рядки
 set linebreak
 "set hidden "
 "set mouse=a "
 "set mousehide "
+" показувати не завершені команди в статус бар
 set showcmd wildmenu
+" Показуємо лінійку та номерацію рядків відносно поточного рядка 
 set ruler number relativenumber cursorline
+" Підсвітимо пробіли та табуляцію
 set list listchars=tab:╺╴,eol:¬,trail:·,extends:→,precedes:←
+" мигнути екраном якщо помилка
 set visualbell
+" Показати ім`я файла в заголовку термінлу 
 set title
+" змінюємо розмір історії команд та змін
 set history=127 undolevels=2048
+"set fileformat=unix
 set fencs=utf-8,cp1251,koi8-r,cp866
 
+" перечити файл якщо змінено ззовні
 set autoread
 set expandtab tabstop=4 autoindent softtabstop=4 shiftwidth=4 cindent smartindent
-au FileType make set tabstop=8 shiftwidth=8
-"au FileType markdown set nowrap
 "set wrap linebreak nolist textwidth=80
-set ttimeoutlen=10 
-let &t_SI.="\e[5 q" 
-let &t_SR.="\e[3 q" 
-let &t_EI.="\e[2 q" 
 
-set langmap=ФИСВУАПРШОЛДЬТЩЗЙКЫІЕГМЦЧНЯ;ABCDEFGHIJKLMNOPQRSSTUVWXYZ,фисвуапршолдьтщзйкыіегмцчня;abcdefghijklmnopqrsstuvwxyz
+" НАЛАШТУВАННЯ ВИГЯЛДУ КУРСОРУ {{{
+set ttimeoutlen=10 "знажуємо затримку виведення помлідовностей
+let &t_SI.="\e[5 q" " режим вставки
+let &t_SR.="\e[3 q" " режим заміни
+let &t_EI.="\e[2 q" " нормальний режим
+" де
+" 1 - моготливий прямокутник
+" 2 - звичайний прямокутник
+" 3 - миготливе підкреслення
+" 4 - звичайне підкреслення
+" 5 - миготлива риска
+" 6 - риска
+" }}}
 
-set foldenable
-set foldmethod=syntax 
-set foldmethod=indent 
-set foldcolumn=3 
-set foldlevel=1 
-set foldopen=all 
-set tags=tags\ $VIMRUNTIME/systags 
+" РОЗУМІЄ УКРАЇНСЬКУ {{{
+    set langmap=ФИСВУАПРШОЛДЬТЩЗЙКЫІЕГМЦЧНЯ;ABCDEFGHIJKLMNOPQRSSTUVWXYZ,фисвуапршолдьтщзйкыіегмцчня;abcdefghijklmnopqrsstuvwxyz
+" }}} 
 
-let g:airline#extensions#tabline#enabled = 1
-let g:airline_powerline_fonts = 1
-let g:airline#extensions#keymap#enabled = 1
-let g:airline_section_z = "\ue0a1:%l/%L Col:%c" 
-let g:Powerline_symbols='unicode' 
-let g:airline#extensions#xkblayout#enabled = 1 
+" ФОЛДИНГ {{{
+    set foldenable
+    set foldmethod=syntax " визначати блоки тексту по синтаксису
+    set foldmethod=indent " визначати блоки зп відступом
+    set foldcolumn=3 " Показати полосу для керування згоротанням
+    set foldlevel=1 " Перший рівень вкладеності відкритий, решта закриті
+    set foldopen=all " автоматическое открытие сверток при заходе в них
+    set tags=tags\ $VIMRUNTIME/systags " Шукати теги в поточному каталозі (теги генерируются ctags)
+" }}}
 
+" AIRLINE {{{
+    let g:airline#extensions#tabline#enabled = 1
+    let g:airline_powerline_fonts = 1 " Увімкнути підтримку Powerline шрифтів
+    let g:airline#extensions#keymap#enabled = 1 "Не показывать текущий маппинг
+    let g:airline_section_z = "\ue0a1:%l/%L Col:%c" " Кастомна графа положення курсору
+    let g:Powerline_symbols='unicode' " Підтримка unicode
+    let g:airline#extensions#xkblayout#enabled = 1 "
+" }}}
+
+" NONAME {{{
+augroup config_settings
+    autocmd!
+    autocmd FileType make set tabstop=8 shiftwidth=8
+    autocmd FileType markdown set nowrap
+    autocmd FileType vim setlocal foldlevel=0 foldmethod=marker
+    autocmd FileType python set omnifunc=pythoncomplete#Complete
+    autocmd FileType tt2html set omnifunc=htmlcomplete#CompleteTags
+    autocmd FileType javascript set omnifunc=javascriptcomplete#CompleteJS
+    autocmd FileType html set omnifunc=htmlcomplete#CompleteTags
+    autocmd FileType css set omnifunc=csscomplete#CompleteCSS
+    autocmd FileType xml set omnifunc=xmlcomplete#CompleteTags
+    autocmd FileType php set omnifunc=phpcomplete#CompletePHP
+    autocmd FileType c set omnifunc=ccomplete#Complete
+augroup END
+" }}}
+
+" КЛАВІШІ {{{
+
+map <Down> <NOP>
+map <Up> <NOP>
+map <Left> <NOP>
+map <Right> <NOP>
+" }}}
+
+" EMPTY {{{
+" }}}
+
+" EMPTY {{{
+" }}}
+" EMPTY {{{
+" }}}
