@@ -66,3 +66,18 @@ if [ -e "$(pwd)/vimrc" ]; then
 else
     ln -s "$(pwd)/init.vim" "$(pwd)/vimrc"
 fi
+
+if [ -e "$HOME/.local/share/nvim/plugged" ]; then
+    if [ -d "$HOME/.local/share/nvim/plugged" ]; then
+        mv "$HOME/.local/share/nvim/plugged" "$HOME/.local/share/nvim/plugged.$(date +%d-%m-%y)"
+        ln -s "$(pwd)/plugged" "$HOME/.local/share/nvim/plugged"
+    else
+        if [ $(readlink "$HOME/.local/share/nvim/plugged") = "$(pwd)/plugged" ];then
+            echo "plugged ok"
+        else
+            ln -s "$(pwd)/plugged" "$HOME/.local/share/nvim/plugged"
+        fi
+    fi
+else
+    ln -s "$(pwd)/plugged" "$HOME/.local/share/nvim/plugged"
+fi

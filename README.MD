@@ -25,7 +25,7 @@
 ```zsh
 git clone https://github.com/Sam4uk/NVim.git
 cd NVim
-./mksymlink.sh
+./init.sh
 
 ```
 
