@@ -23,11 +23,11 @@ InitLink (){
             echo -e "${1} is a symlink"
             echo -e "Read symlink"
             echo -e "${1} => $(readlink ${1})"
-            if [ $(readlink ${1}) = "$(pwd)" ];then
+            if [ $(readlink ${1}) = ${2} ];then
                 echo -e "\e[32mSymlink OK\e[0m"
             else
                 # не наша тека
-                BackUp "$(pwd)" "${1}"
+                BackUp "${2}" "${1}"
                 echo -e "\e[32mSymlink OK\e[0m"
             fi
         else
@@ -37,47 +37,22 @@ InitLink (){
             if [ -d ${1} ]; then
                 # каталог
                 echo -e "${1} is a folder"
-                BackUp "$(pwd)" "${1}"
+                BackUp "${2}" "${1}"
                 echo -e "\e[32mSymlink OK\e[0m"
             else
                 # файл
                 echo -e "${1} is a file"
-                BackUp "$(pwd)" "${1}"
+                BackUp "${2}" "${1}"
                 echo -e "\e[32mSymlink OK\e[0m"
             fi
         fi
     else
         echo -e "Path ${1} \e[31mno exists\e[0m"
-        ln -s "$(pwd)" ${1}
+        ln -s ${2} ${1}
         echo -e "\e[32mCreate\e[0m"
         echo -e "\e[32mSymlink OK\e[0m"
     fi
 }
 
-InitLink ~/.vim
-InitLink ~/.config/nvim
-
-if [ -e "$(pwd)/vimrc" ]; then
-    if [ $(readlink $(pwd)/vimrc) = "$(pwd)/init.vim" ];then
-        echo -e "vimrc ok"
-    else
-        ln -s "$(pwd)/init.vim" "$(pwd)/vimrc"
-    fi
-else
-    ln -s "$(pwd)/init.vim" "$(pwd)/vimrc"
-fi
-
-# if [ -e "$HOME/.local/share/nvim/plugged" ]; then
-#     if [ -d "$HOME/.local/share/nvim/plugged" ]; then
-#         mv "$HOME/.local/share/nvim/plugged" "$HOME/.local/share/nvim/plugged.$(date +%d-%m-%y)"
-#         ln -s "$(pwd)/plugged" "$HOME/.local/share/nvim/plugged"
-#     else
-#         if [ $(readlink "$HOME/.local/share/nvim/plugged") = "$(pwd)/plugged" ];then
-#             echo "plugged ok"
-#         else
-#             ln -s "$(pwd)/plugged" "$HOME/.local/share/nvim/plugged"
-#         fi
-#     fi
-# else
-#     ln -s "$(pwd)/plugged" "$HOME/.local/share/nvim/plugged"
-# fi
+InitLink ~/.vimrc $(pwd)/vim.config
+InitLink ~/.config/nvim/init.vim $(pwd)/vim.config
