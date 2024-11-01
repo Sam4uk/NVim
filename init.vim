@@ -20,7 +20,7 @@
 "║DEALINGS IN THE SOFTWARE.                                                  ║
 "║                                                                           ║
 "║                                                                           ║
-"║                                              Last update:25-07-21 14:59:24║
+"║                                              Last update:01-11-24 23:56:32║
 "╚═══════════════════════════════════════════════════════════════════════════╝
 
 " AUTO LOAD PLAGIN MANAGER {{{
@@ -59,7 +59,7 @@ endif
 " ДЛЯ NVim{{{
 if it_NVim
     Plug 'ayu-theme/ayu-vim' " Кольорова схема
-    "Plug 'iamcco/markdown-preview.nvim', { 'do': { -> mkdp#util#install() }, 'for': ['markdown', 'vim-plug']}
+    Plug 'iamcco/markdown-preview.nvim', { 'do': { -> mkdp#util#install() }, 'for': ['markdown', 'vim-plug']}
 else
     " Налаштування для Vim щоб був схожий на NVim
     Plug 'noahfrederick/vim-neovim-defaults'
@@ -67,7 +67,7 @@ endif
 " }}}
 
 " ЗАГАЛЬНІ{{{
-    
+    Plug 'normen/vim-pio'
     Plug 'tpope/vim-surround'
     Plug 'vim-airline/vim-airline' " Можифікувати рядок статусу
     Plug 'vim-airline/vim-airline-themes'
@@ -86,7 +86,7 @@ endif
     Plug 'airblade/vim-gitgutter'
     Plug 'ryanoasis/vim-devicons'
     " Перевірка синтаксисуа
-    "  Plug 'scrooloose/syntastic' 
+      Plug 'scrooloose/syntastic' 
     " Плагин автозавершення
     "  Plug 'Valloric/YouCompleteMe'
 " }}}
@@ -107,7 +107,7 @@ if it_Vim
     set laststatus=2
     set hlsearch incsearch
     syntax enable
-
+    let g:coc_disable_startup_warning = 1
     " кращий бекап, свап та інші збереження для Vim (NVim має прекрасні за
     " замовчуванням
     set directory=~/.vim/dirs/tmp     " directory to place swap files in
@@ -127,7 +127,7 @@ if it_Vim
         call mkdir(&undodir, "p")
     endif
 
-    if empty(glob("~/.vim/plugged/vim-airline/autoload/airline.vim"))   
+    if empty(glob("~/.vim/plugged/vim-airline/autoload/airline.vim"))
       :PlugInstall
   endif
   colorscheme dracula
@@ -136,18 +136,19 @@ endif
 
 " НАЛАШТУВАННЯ NVim {{{
 if it_NVim
-    if empty(glob("~/.config/nvim/plugged/vim-airline/autoload/airline.vim"))   
+    if empty(glob("~/.config/nvim/plugged/vim-airline/autoload/airline.vim"))
     :PlugInstall
   endif
   set termguicolors
   colorscheme ayu
-  let ayucolor="dark" 
+  " set background=dark
+  let ayucolor="dark"
 endif
 " }}}
 
 " НАЛАШТУВАННЯ ДЛЯ Win32 {{{
 if it_Win32
-"  if empty(glob("~/.vim/plugged/vim-airline/autoload/airline.vim"))   
+"  if empty(glob("~/.vim/plugged/vim-airline/autoload/airline.vim"))
 "      :PlugInstall
 "  endif
   " якщо раптом доведеться запустити вім у вінді
@@ -173,7 +174,7 @@ endif
 
 " КОНФІГУРАЦІЯ {{{
 highlight ColorColumn ctermbg=black
-call matchadd('ColorColumn','\%81v',100)
+call matchadd('ColorColumn','\%80v',100)
 
 " задаємо кількість рядків при скролінгу
 set scrolloff=4
@@ -186,13 +187,13 @@ set linebreak
 "set mousehide "
 " показувати не завершені команди в статус бар
 set showcmd wildmenu
-" Показуємо лінійку та номерацію рядків відносно поточного рядка 
+" Показуємо лінійку та номерацію рядків відносно поточного рядка
 set ruler number relativenumber cursorline
 " Підсвітимо пробіли та табуляцію
 set list listchars=tab:╺╴,eol:¬,trail:·,extends:→,precedes:←
 " мигнути екраном якщо помилка
 set visualbell
-" Показати ім`я файла в заголовку термінлу 
+" Показати ім`я файла в заголовку термінлу
 set title
 " змінюємо розмір історії команд та змін
 set history=127 undolevels=2048
