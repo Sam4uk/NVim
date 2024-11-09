@@ -47,17 +47,5 @@ TODO
 ====
 
 Нема межі досконалості
-sh -c "$(wget https://raw.githubusercontent.com/Sam4uk/deputy/refs/heads/master/deputy -O -)" --  source tar2
-
-InitLink ~/.vim
-InitLink ~/.config/nvim
-
-ln -s "$(pwd)/init.vim" "$(pwd)/vimrc"
-
-sh -c "$(wget https://raw.githubusercontent.com/Sam4uk/deputy/refs/heads/master/deputy -O -)" --  $(pwd) ~/.vim
-
-sh -c "$(wget https://raw.githubusercontent.com/Sam4uk/deputy/refs/heads/master/deputy -O -)" --  $(pwd) ~/.vim
-
-ln -s "$(pwd)/init.vim" "$(pwd)/vimrc"
 
 
