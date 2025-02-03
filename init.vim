@@ -71,7 +71,7 @@ endif
     Plug 'tpope/vim-surround'
     Plug 'vim-airline/vim-airline' " Можифікувати рядок статусу
     Plug 'vim-airline/vim-airline-themes'
-    Plug 'rhysd/vim-clang-format', {'for': ['c','cxx']}
+    Plug 'rhysd/vim-clang-format', {'for': ['c','cxx','cpp','h','hxx','hpp']}
     " FuzzyFinder (для шуидкого пошуку)
     Plug 'junegunn/fzf', { 'dir': '~/.fzf', 'do': './install --all' }
     Plug 'junegunn/fzf.vim'
