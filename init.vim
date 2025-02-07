@@ -1,5 +1,5 @@
 "╔═══════════════════════════════════════════════════════════════════════════╗
-"║ Copyright © 2021-2025 Sam4uk                                            ║
+"║ Copyright © 2021 - 2025 Sam4uk                                            ║
 "║                                                                           ║
 "║Permission is hereby  granted, free of charge , to  any  person obtaining a║
 "║copy of this software and associated documentation files  (the “Software”),║
@@ -20,7 +20,7 @@
 "║DEALINGS IN THE SOFTWARE.                                                  ║
 "║                                                                           ║
 "║                                                                           ║
-"║                                              Last update:05-02-25 00:42:34║
+"║                                              Last update:07-02-25 14:39:18║
 "╚═══════════════════════════════════════════════════════════════════════════╝
 
 " AUTO LOAD PLAGIN MANAGER {{{
@@ -30,8 +30,8 @@ let it_gVim = has('gvim')
 let it_Vim = !it_NVim
 
 "  додаємо рядки до заголовку. Дату початку проекту
-"  та дати реданування конфігу у редаторі у форматі 2021 = 20ХХ
-autocmd! bufwritepre $MYVIMRC call setline(2, '"║ Copyright © 2021 - '.strftime("%Y").' Sam4uk                                            ║")
+"  та дати реданування конфігу у редаторі у форматі 2021 - 20ХХ
+autocmd! bufwritepre $MYVIMRC call setline(2, '"║ Copyright © 2021 - '.strftime("%Y").' Sam4uk                                            ║')
 autocmd! bufwritepre $MYVIMRC call setline(23, '"║                                              Last update:'.strftime("%d-%m-%y %H:%M:%S║"))
 autocmd! bufwritepost $MYVIMRC source $MYVIMRC
 
