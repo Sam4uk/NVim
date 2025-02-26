@@ -20,7 +20,7 @@
 "║DEALINGS IN THE SOFTWARE.                                                  ║
 "║                                                                           ║
 "║                                                                           ║
-"║                                              Last update:07-02-25 14:39:18║
+"║                                              Last update:26-02-25 23:50:07║
 "╚═══════════════════════════════════════════════════════════════════════════╝
 
 " AUTO LOAD PLAGIN MANAGER {{{
@@ -269,6 +269,16 @@ map <Up> <NOP>
 map <Left> <NOP>
 map <Right> <NOP>
 " }}}
+
+" Clang-format {{{
+    let g:clang_format#style_options = {
+            \ "Language" :                "Cpp",
+            \ "BasedOnStyle" :         "Google",
+            \ "AlignConsecutiveMacros" : "true",
+            \ "AlignEscapedNewlines" :  "Right",
+            \ "Standard" :              "C++17"}
+"}}}
+
 
 " EMPTY {{{
 " }}}
