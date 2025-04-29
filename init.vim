@@ -191,7 +191,7 @@ set linebreak
 " показувати не завершені команди в статус бар
 set showcmd wildmenu
 " Показуємо лінійку та номерацію рядків відносно поточного рядка
-set ruler number relativenumber cursorline
+set ruler number relativenumber cursorline cursorcolumn
 " Підсвітимо пробіли та табуляцію
 set list listchars=tab:╺╴,eol:¬,trail:·,extends:→,precedes:←
 " мигнути екраном якщо помилка
