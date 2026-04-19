@@ -20,7 +20,7 @@
 "║DEALINGS IN THE SOFTWARE.                                                  ║
 "║                                                                           ║
 "║                                                                           ║
-"║                                              Last update:26-02-25 23:50:07║
+"║                                              Last update:19-04-26 23:09:20║
 "╚═══════════════════════════════════════════════════════════════════════════╝
 
 " AUTO LOAD PLAGIN MANAGER {{{
@@ -160,7 +160,11 @@ if it_Win32
   set encoding=cp2151
 else
   set encoding=utf-8
-  set  termencoding=utf-8
+  if it_Vim
+    set termencoding=utf-8
+  else
+  endif
+
 endif
 " }}}
 
